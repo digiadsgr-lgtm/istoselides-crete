@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-inter);
+  --font-montserrat: var(--font-montserrat);
+}
+
+:root {
+  --hp-bg: #030509;
+}
+
+body {
+  background-color: var(--hp-bg);
+  color: #f8fafc;
+  overflow-x: hidden;
+}
+
+/* Hide scrollbar for a seamless App look */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--hp-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00d9ff;
+}
