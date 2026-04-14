@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Montserrat } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import { Analytics } from '@vercel/analytics/next';
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const montserrat = Montserrat({ subsets: ["latin"], variable: "--font-montserrat", weight: ["300", "400", "600", "800", "900"] });
@@ -90,6 +91,7 @@ export default function RootLayout({
       <body suppressHydrationWarning className={`${inter.variable} ${montserrat.variable} font-sans antialiased`}>
         <Navbar />
         {children}
+        <Analytics />
       </body>
     </html>
   );
