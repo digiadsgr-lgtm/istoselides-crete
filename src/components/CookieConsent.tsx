@@ -18,14 +18,15 @@ export default function CookieConsent() {
     const status = granted ? "granted" : "denied";
     
     // GTM DataLayer Push
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
+    const w = window as any;
+    w.dataLayer = w.dataLayer || [];
+    w.dataLayer.push({
       event: "consent_update",
       consent_status: granted ? "all" : "rejected",
     });
 
     // Execute gtag consent update
-    function gtag() { window.dataLayer.push(arguments); }
+    function gtag() { w.dataLayer.push(arguments); }
     // @ts-ignore
     gtag('consent', 'update', {
       'ad_storage': status,
