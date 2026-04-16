@@ -6,7 +6,7 @@ import SmoothScroll from "@/components/SmoothScroll";
 import CookieConsent from "@/components/CookieConsent";
 
 const inter = Inter({ subsets: ["latin", "greek"], variable: "--font-inter" });
-const montserrat = Montserrat({ subsets: ["latin", "greek"], variable: "--font-montserrat", weight: ["300", "400", "600", "800", "900"] });
+const montserrat = Montserrat({ subsets: ["latin"], variable: "--font-montserrat", weight: ["300", "400", "600", "800", "900"] });
 
 export const metadata: Metadata = {
   title: "Κατασκευή Ιστοσελίδων στο Ρέθυμνο & Κρήτη | Web Design Experts",
