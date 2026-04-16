@@ -3,6 +3,7 @@ import { Inter, Montserrat } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import SmoothScroll from "@/components/SmoothScroll";
+import CookieConsent from "@/components/CookieConsent";
 
 const inter = Inter({ subsets: ["latin", "greek"], variable: "--font-inter" });
 const montserrat = Montserrat({ subsets: ["latin", "greek"], variable: "--font-montserrat", weight: ["300", "400", "600", "800", "900"] });
@@ -166,6 +167,21 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
+        {/* Google Consent Mode v2 Default State */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('consent', 'default', {
+  'ad_storage': 'denied',
+  'ad_user_data': 'denied',
+  'ad_personalization': 'denied',
+  'analytics_storage': 'denied',
+  'wait_for_update': 500
+});
+gtag('set', 'ads_data_redaction', true);`
+          }}
+        />
         {/* Google Tag Manager */}
         <script
           dangerouslySetInnerHTML={{
@@ -193,6 +209,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <Navbar />
           {children}
         </SmoothScroll>
+        <CookieConsent />
       </body>
     </html>
   );
