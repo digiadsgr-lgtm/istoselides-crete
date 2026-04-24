@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import SmoothScroll from "@/components/SmoothScroll";
 import CookieConsent from "@/components/CookieConsent";
+import { DigiChat } from "@/components/DigiAgent";
 
 const inter = Inter({ subsets: ["latin", "greek"], variable: "--font-inter" });
 const montserrat = Montserrat({ subsets: ["latin"], variable: "--font-montserrat", weight: ["300", "400", "600", "800", "900"] });
@@ -86,7 +87,6 @@ const structuredData = [
       { "@type": "Country", "name": "Ελλάδα" }
     ],
     "priceRange": "€€-€€€",
-    "telephone": "+306987602707",
     "email": "info@digiads.gr",
     "openingHoursSpecification": {
       "@type": "OpeningHoursSpecification",
@@ -144,7 +144,7 @@ const structuredData = [
     "logo": "https://www.digiads.gr/wp-content/uploads/2023/11/Digiads-Logo-1024x286.png",
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+306987602707",
+      "email": "info@digiads.gr",
       "contactType": "sales",
       "areaServed": "GR",
       "availableLanguage": ["Greek", "English"]
@@ -211,6 +211,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           {children}
         </SmoothScroll>
         <CookieConsent />
+        {/* DIGI — Virtual Sales Agent (global) */}
+        <DigiChat />
       </body>
     </html>
   );

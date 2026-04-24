@@ -79,14 +79,20 @@ export function Footer() {
                 📍 Κολοκοτρώνη 34, Ρέθυμνο, Κρήτη
               </li>
               <li>
-                <a href="tel:+306987602707" className="text-sm text-slate-400 hover:text-[#00d9ff] transition-colors font-light">
-                  📞 +30 698 760 2707
-                </a>
-              </li>
-              <li>
                 <a href="mailto:info@digiads.gr" className="text-sm text-slate-400 hover:text-[#00d9ff] transition-colors font-light">
                   ✉️ info@digiads.gr
                 </a>
+              </li>
+              <li>
+                <button
+                  onClick={() => {
+                    const btn = document.querySelector<HTMLButtonElement>('[aria-label="Άνοιξε τον DIGI chat"]');
+                    btn?.click();
+                  }}
+                  className="inline-flex items-center gap-2 text-sm text-[#00d9ff] hover:text-white border border-[#00d9ff]/30 hover:border-[#00d9ff]/60 rounded-full px-4 py-1.5 transition-all duration-300 font-medium"
+                >
+                  💬 Μίλα με τον DIGI
+                </button>
               </li>
               <li className="text-sm text-slate-400 font-light">
                 🕐 Δευ-Παρ 09:00 - 18:00
