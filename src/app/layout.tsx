@@ -35,6 +35,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://istoselides-rethymno.gr",
   },
+  verification: {
+    google: "RvcqGIduR0dj8Z1dcktF1H6ILWXDFTTpa6VHxfk_Kfw",
+  },
   openGraph: {
     type: "website",
     locale: "el_GR",
@@ -235,6 +238,7 @@ export default function RootLayout({
   return (
     <html lang="el" className="scroll-smooth bg-[#010205] text-white" suppressHydrationWarning>
       <head>
+        <meta name="google-site-verification" content="RvcqGIduR0dj8Z1dcktF1H6ILWXDFTTpa6VHxfk_Kfw" />
         {/* LLM-Specific Meta */}
         <meta
           name="llm-opt"
