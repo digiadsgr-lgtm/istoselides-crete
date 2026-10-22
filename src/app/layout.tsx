@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ["latin", "greek"], variable: "--font-inter" });
 const montserrat = Montserrat({ subsets: ["latin"], variable: "--font-montserrat", weight: ["300", "400", "600", "800", "900"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://istoselides-rethymno.gr"),
+  metadataBase: new URL("https://istoselides-crete.gr"),
   title: "Κατασκευή Ιστοσελίδων στο Ρέθυμνο & την Κρήτη | E-shop & SEO | DIGIADS",
   description:
     "Κορυφαία κατασκευή ιστοσελίδων, e-shop (Next.js / Astro με 100/100 Lighthouse) και Local SEO σε Ρέθυμνο, Χανιά, Ηράκλειο & Λασίθι. Επίσημος βραχίονας της DIGIADS στην Κρήτη.",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   creator: "DIGIADS",
   publisher: "DIGIADS",
   alternates: {
-    canonical: "https://istoselides-rethymno.gr",
+    canonical: "https://istoselides-crete.gr",
   },
   verification: {
     google: "RvcqGIduR0dj8Z1dcktF1H6ILWXDFTTpa6VHxfk_Kfw",
@@ -41,14 +41,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "el_GR",
-    url: "https://istoselides-rethymno.gr",
+    url: "https://istoselides-crete.gr",
     title: "Κατασκευή Ιστοσελίδων Ρέθυμνο & Κρήτη | 100/100 Lighthouse | DIGIADS",
     description:
       "Δημιουργούμε αστραπιαίες ιστοσελίδες, e-shop και συστήματα Direct Bookings στο Ρέθυμνο και όλη την Κρήτη. Official Web Architecture Hub of DIGIADS.GR.",
     siteName: "Istoselides Rethymno by DIGIADS",
     images: [
       {
-        url: "https://istoselides-rethymno.gr/logo/og-image.jpg",
+        url: "https://istoselides-crete.gr/logo/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Κατασκευή Ιστοσελίδων Ρέθυμνο & Κρήτη — DIGIADS",
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Κατασκευή Ιστοσελίδων Ρέθυμνο & Κρήτη | E-shop & SEO | DIGIADS",
     description: "High-Performance Next.js & Astro Web Design solutions in Rethymno & Crete. Powered by DIGIADS.GR.",
-    images: ["https://istoselides-rethymno.gr/logo/og-image.jpg"],
+    images: ["https://istoselides-crete.gr/logo/og-image.jpg"],
   },
   robots: {
     index: true,
@@ -79,7 +79,7 @@ const structuredData = [
   {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    "@id": "https://istoselides-rethymno.gr/#organization",
+    "@id": "https://istoselides-crete.gr/#organization",
     name: "Istoselides Rethymno | DIGIADS Web Design & SEO Κρήτη",
     alternateName: [
       "Web Design Ρέθυμνο",
@@ -87,9 +87,9 @@ const structuredData = [
       "Κατασκευή Eshop Ρέθυμνο",
       "DigiAds Network Rethymno",
     ],
-    url: "https://istoselides-rethymno.gr",
+    url: "https://istoselides-crete.gr",
     logo: "https://www.digiads.gr/logo/digiads-logo-navy-gold.png",
-    image: "https://istoselides-rethymno.gr/logo/og-image.jpg",
+    image: "https://istoselides-crete.gr/logo/og-image.jpg",
     telephone: "+306987602707",
     description:
       "Η εξειδικευμένη ομάδα Headless Web Design & SEO της DIGIADS για το Ρέθυμνο και την Κρήτη. High-performance ιστοσελίδες, e-shop και συστήματα απευθείας κρατήσεων με 100/100 Google Lighthouse.",
@@ -221,7 +221,7 @@ const structuredData = [
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "Istoselides Rethymno by DIGIADS",
-    url: "https://istoselides-rethymno.gr",
+    url: "https://istoselides-crete.gr",
     publisher: {
       "@type": "Organization",
       name: "DIGIADS",

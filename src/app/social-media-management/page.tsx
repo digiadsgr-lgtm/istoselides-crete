@@ -15,13 +15,13 @@ export const metadata: Metadata = {
     "DIGIADS Social Media",
   ],
   alternates: {
-    canonical: "https://istoselides-rethymno.gr/social-media-management",
+    canonical: "https://istoselides-crete.gr/social-media-management",
   },
   openGraph: {
     title: "Social Media Management, TikTok & Brand Strategy | DIGIADS Network",
     description:
       "Short-form video production, αισθητικό branding και ενεργή ανάπτυξη κοινού.",
-    url: "https://istoselides-rethymno.gr/social-media-management",
+    url: "https://istoselides-crete.gr/social-media-management",
     type: "website",
   },
 };

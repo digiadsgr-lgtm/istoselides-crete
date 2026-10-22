@@ -8,7 +8,7 @@ export default async function robots(): Promise<MetadataRoute.Robots> {
   const host =
     headersList.get("x-forwarded-host") ||
     headersList.get("host") ||
-    "www.istoselides-rethymno.gr";
+    "istoselides-crete.gr";
   const protocol = headersList.get("x-forwarded-proto") || "https";
   const baseUrl = `${protocol}://${host}`;
 

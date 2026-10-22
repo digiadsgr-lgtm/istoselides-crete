@@ -27,7 +27,7 @@ export async function generateMetadata({
     };
   }
 
-  const canonicalUrl = `https://istoselides-rethymno.gr/arthra/${post.slug}`;
+  const canonicalUrl = `https://istoselides-crete.gr/arthra/${post.slug}`;
 
   return {
     title: `${post.title} | DIGIADS Network`,
@@ -49,7 +49,7 @@ export async function generateMetadata({
       authors: [post.author.name],
       images: [
         {
-          url: `https://istoselides-rethymno.gr${post.heroImage}`,
+          url: `https://istoselides-crete.gr${post.heroImage}`,
           width: 1200,
           height: 630,
           alt: post.heroAlt,
@@ -60,7 +60,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: post.title,
       description: post.description,
-      images: [`https://istoselides-rethymno.gr${post.heroImage}`],
+      images: [`https://istoselides-crete.gr${post.heroImage}`],
     },
   };
 }
@@ -82,7 +82,7 @@ export default async function SinglePost({
     .filter((a) => a.slug !== post.slug)
     .slice(0, 3);
 
-  const canonicalUrl = `https://istoselides-rethymno.gr/arthra/${post.slug}`;
+  const canonicalUrl = `https://istoselides-crete.gr/arthra/${post.slug}`;
 
   const articleSchema = [
     {
@@ -90,7 +90,7 @@ export default async function SinglePost({
       "@type": "BlogPosting",
       headline: post.title,
       description: post.description,
-      image: `https://istoselides-rethymno.gr${post.heroImage}`,
+      image: `https://istoselides-crete.gr${post.heroImage}`,
       datePublished: post.date,
       dateModified: post.updatedDate,
       author: {
@@ -127,13 +127,13 @@ export default async function SinglePost({
           "@type": "ListItem",
           position: 1,
           name: "Αρχική",
-          item: "https://istoselides-rethymno.gr",
+          item: "https://istoselides-crete.gr",
         },
         {
           "@type": "ListItem",
           position: 2,
           name: "Άρθρα & Οδηγοί",
-          item: "https://istoselides-rethymno.gr/arthra",
+          item: "https://istoselides-crete.gr/arthra",
         },
         {
           "@type": "ListItem",
@@ -258,7 +258,7 @@ export default async function SinglePost({
               Εμβαθύνετε μέσω του Κεντρικού Οικοσυστήματος της DIGIADS
             </h2>
             <p className="text-slate-400 text-sm font-light mb-6">
-              Το <strong>istoselides-rethymno.gr</strong> αποτελεί εξειδικευμένο βραχίονα Web Development της{" "}
+              Το <strong>istoselides-crete.gr</strong> αποτελεί εξειδικευμένο βραχίονα Web Development της{" "}
               <a
                 href="https://www.digiads.gr"
                 target="_blank"

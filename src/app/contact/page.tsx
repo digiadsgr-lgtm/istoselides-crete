@@ -25,7 +25,7 @@ export default function ContactPage() {
           phone,
           businessType: "Contact Form - Istoselides Rethymno",
           goal: message,
-          summary: `Φόρμα Επικοινωνίας από istoselides-rethymno.gr: ${message}`,
+          summary: `Φόρμα Επικοινωνίας από istoselides-crete.gr: ${message}`,
         }),
       });
       if (res.ok) {

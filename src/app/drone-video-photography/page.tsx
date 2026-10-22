@@ -15,13 +15,13 @@ export const metadata: Metadata = {
     "DIGIADS Drone Services",
   ],
   alternates: {
-    canonical: "https://istoselides-rethymno.gr/drone-video-photography",
+    canonical: "https://istoselides-crete.gr/drone-video-photography",
   },
   openGraph: {
     title: "4K Drone Video & Architectural Photography στην Κρήτη | DIGIADS",
     description:
       "Κινηματογραφική παραγωγή εικόνας και ήχου που εκτοξεύει τις κρατήσεις και την αξία του brand σας.",
-    url: "https://istoselides-rethymno.gr/drone-video-photography",
+    url: "https://istoselides-crete.gr/drone-video-photography",
     type: "website",
   },
 };

@@ -218,7 +218,7 @@ export default function Services() {
           </p>
           <p className="text-lg text-slate-400 font-light">
             Συνδυάζουμε την εξειδικευμένη κατασκευή ιστοσελίδων του{" "}
-            <strong className="text-white">istoselides-rethymno.gr</strong> με την πλήρη διαφημιστική ισχύ της{" "}
+            <strong className="text-white">istoselides-crete.gr</strong> με την πλήρη διαφημιστική ισχύ της{" "}
             <a
               href="https://www.digiads.gr"
               target="_blank"

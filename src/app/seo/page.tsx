@@ -16,13 +16,13 @@ export const metadata: Metadata = {
     "DIGIADS SEO",
   ],
   alternates: {
-    canonical: "https://istoselides-rethymno.gr/seo",
+    canonical: "https://istoselides-crete.gr/seo",
   },
   openGraph: {
     title: "SEO & Local SEO Ρέθυμνο & Κρήτη | Κυριαρχία στη Google με την DIGIADS",
     description:
       "Οργανική ανάπτυξη, Technical SEO 100/100 και κατάταξη στην 1η τριάδα του Google Maps στην Κρήτη.",
-    url: "https://istoselides-rethymno.gr/seo",
+    url: "https://istoselides-crete.gr/seo",
     type: "website",
   },
 };

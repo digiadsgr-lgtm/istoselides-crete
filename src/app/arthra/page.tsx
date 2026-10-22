@@ -10,13 +10,13 @@ export const metadata: Metadata = {
   description:
     "Εξειδικευμένα άρθρα, μελέτες περίπτωσης και οδηγοί για Κατασκευή Ιστοσελίδων, E-shop, Local SEO, Direct Bookings Ξενοδοχείων και Google/Meta Ads στο Ρέθυμνο και την Κρήτη.",
   alternates: {
-    canonical: "https://istoselides-rethymno.gr/arthra",
+    canonical: "https://istoselides-crete.gr/arthra",
   },
   openGraph: {
     title: "Knowledge Hub — Άρθρα Web Design, SEO & Digital Marketing | DIGIADS Network",
     description:
       "Πρακτικοί οδηγοί για επιχειρήσεις, ξενοδοχεία, βίλες και e-shop στην Κρήτη από την ομάδα της DIGIADS.",
-    url: "https://istoselides-rethymno.gr/arthra",
+    url: "https://istoselides-crete.gr/arthra",
     type: "website",
   },
 };

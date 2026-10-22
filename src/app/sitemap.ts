@@ -9,7 +9,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const host =
     headersList.get("x-forwarded-host") ||
     headersList.get("host") ||
-    "www.istoselides-rethymno.gr";
+    "istoselides-crete.gr";
   const protocol = headersList.get("x-forwarded-proto") || "https";
   const baseUrl = `${protocol}://${host}`;
 

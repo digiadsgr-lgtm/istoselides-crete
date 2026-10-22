@@ -16,13 +16,13 @@ export const metadata: Metadata = {
     "DIGIADS Web Design",
   ],
   alternates: {
-    canonical: "https://istoselides-rethymno.gr/web-design",
+    canonical: "https://istoselides-crete.gr/web-design",
   },
   openGraph: {
     title: "Κατασκευή Ιστοσελίδων & E-shop Κρήτη | 100/100 Lighthouse | DIGIADS",
     description:
       "Αστραπιαίες ιστοσελίδες και e-shop με Next.js & Astro για επιχειρήσεις, βίλες και ξενοδοχεία στην Κρήτη.",
-    url: "https://istoselides-rethymno.gr/web-design",
+    url: "https://istoselides-crete.gr/web-design",
     type: "website",
   },
 };

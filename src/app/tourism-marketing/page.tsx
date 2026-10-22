@@ -15,13 +15,13 @@ export const metadata: Metadata = {
     "Hospitality Marketing Crete",
   ],
   alternates: {
-    canonical: "https://istoselides-rethymno.gr/tourism-marketing",
+    canonical: "https://istoselides-crete.gr/tourism-marketing",
   },
   openGraph: {
     title: "Tourism & Hospitality Marketing Κρήτη | Direct Bookings Engine | DIGIADS",
     description:
       "Μειώστε την εξάρτηση από Booking & Airbnb με αυτόνομα συστήματα απευθείας κρατήσεων.",
-    url: "https://istoselides-rethymno.gr/tourism-marketing",
+    url: "https://istoselides-crete.gr/tourism-marketing",
     type: "website",
   },
 };

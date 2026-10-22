@@ -182,7 +182,7 @@ export const articles: Article[] = [
       <p>Το αποτέλεσμα; Πάνω από το <strong>53% των χρηστών κινητών εγκαταλείπουν τη σελίδα</strong> αν δεν φορτώσει μέσα σε 3 δευτερόλεπτα.</p>
 
       <h2>2. Πώς Λειτουργεί το Next.js &amp; το Astro (Edge Computing)</h2>
-      <p>Με την αρχιτεκτονική που εφαρμόζουμε τόσο στο <strong>istoselides-rethymno.gr</strong> όσο και στον κεντρικό κόμβο της <a href="https://www.digiads.gr" target="_blank" rel="noopener"><strong>DIGIADS (www.digiads.gr)</strong></a>, οι σελίδες προ-δημιουργούνται (Static Site Generation / Incremental Static Regeneration) και διανέμονται μέσω του παγκόσμιου Edge Network.</p>
+      <p>Με την αρχιτεκτονική που εφαρμόζουμε τόσο στο <strong>istoselides-crete.gr</strong> όσο και στον κεντρικό κόμβο της <a href="https://www.digiads.gr" target="_blank" rel="noopener"><strong>DIGIADS (www.digiads.gr)</strong></a>, οι σελίδες προ-δημιουργούνται (Static Site Generation / Incremental Static Regeneration) και διανέμονται μέσω του παγκόσμιου Edge Network.</p>
 
       <ul>
         <li><strong>Μηδενική καθυστέρηση βάσης δεδομένων (Zero DB Latency):</strong> Το HTML παραδίδεται έτοιμο σε λιγότερο από 50ms.</li>

@@ -15,13 +15,13 @@ export const metadata: Metadata = {
     "Performance Marketing DIGIADS",
   ],
   alternates: {
-    canonical: "https://istoselides-rethymno.gr/digital-marketing/google-meta-ads-management",
+    canonical: "https://istoselides-crete.gr/digital-marketing/google-meta-ads-management",
   },
   openGraph: {
     title: "Performance Marketing — Google Ads & Meta Ads Κρήτη | DIGIADS",
     description:
       "Data-driven διαφημιστικές καμπάνιες με +127% μέση αύξηση τζίρου και διαφανές ROAS reporting.",
-    url: "https://istoselides-rethymno.gr/digital-marketing/google-meta-ads-management",
+    url: "https://istoselides-crete.gr/digital-marketing/google-meta-ads-management",
     type: "website",
   },
 };
