@@ -1,48 +1,32 @@
-import { MetadataRoute } from 'next';
-import { fetchGraphQL } from '@/lib/wp-graphql';
+import { MetadataRoute } from "next";
+import { articles } from "@/data/articles";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://istoselides-rethymno.gr';
+  const baseUrl = "https://istoselides-rethymno.gr";
 
   const staticRoutes: MetadataRoute.Sitemap = [
-    '',
-    '/contact',
-    '/drone-video-photography',
-    '/social-media-management',
-    '/digital-marketing/google-meta-ads-management',
-    '/tourism-marketing',
-    '/web-design',
-    '/arthra'
+    "",
+    "/web-design",
+    "/seo",
+    "/tourism-marketing",
+    "/digital-marketing/google-meta-ads-management",
+    "/social-media-management",
+    "/drone-video-photography",
+    "/arthra",
+    "/contact",
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
-    changeFrequency: 'weekly',
-    priority: route === '' ? 1.0 : 0.8,
+    changeFrequency: route === "" || route === "/arthra" ? "daily" : "weekly",
+    priority: route === "" ? 1.0 : route === "/web-design" || route === "/seo" ? 0.9 : 0.8,
   }));
 
-  try {
-    const data = await fetchGraphQL(`
-      query GetAllPostsForSitemap {
-        posts(first: 100) {
-          nodes {
-            slug
-            modified
-          }
-        }
-      }
-    `);
+  const postRoutes: MetadataRoute.Sitemap = articles.map((post) => ({
+    url: `${baseUrl}/arthra/${post.slug}`,
+    lastModified: new Date(post.updatedDate || post.date),
+    changeFrequency: "monthly",
+    priority: 0.75,
+  }));
 
-    const posts = data?.posts?.nodes || [];
-    const postRoutes: MetadataRoute.Sitemap = posts.map((post: any) => ({
-      url: `${baseUrl}/arthra/${post.slug}`,
-      lastModified: new Date(post.modified || new Date()),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    }));
-
-    return [...staticRoutes, ...postRoutes];
-  } catch (error) {
-    console.error("Failed to generate WP posts for sitemap:", error);
-    return staticRoutes;
-  }
+  return [...staticRoutes, ...postRoutes];
 }

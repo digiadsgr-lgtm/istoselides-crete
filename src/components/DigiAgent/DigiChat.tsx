@@ -16,7 +16,8 @@ interface Message {
 
 // ── Markdown-lite renderer ────────────────────────────────────
 function renderText(text: string) {
-  const parts = text
+  const cleanText = text.replace(/\[SHOW_FORM\]/g, "");
+  const parts = cleanText
     .replace(/\*\*(.+?)\*\*/g, '<strong class="text-white">$1</strong>')
     .replace(/\*(.+?)\*/g, "<em>$1</em>")
     .split("\n");
@@ -55,17 +56,108 @@ export default function DigiChat() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
-  const [isTyping, setIsTyping] = useState(false);
+  const [agentState, setAgentState] = useState<"online" | "reading" | "analyzing" | "typing">("online");
+  const isTyping = agentState !== "online";
   const [exchangeCount, setExchangeCount] = useState(0);
   const [showLeadForm, setShowLeadForm] = useState(false);
   const [leadSubmitted, setLeadSubmitted] = useState(false);
   const [showNotification, setShowNotification] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const [isInitialized, setIsInitialized] = useState(false);
+  const [isListening, setIsListening] = useState(false);
+  const recognitionRef = useRef<any>(null);
 
-  // Show notification bubble after 6 seconds
+  // ── Web Audio API Sound Effect ──────────────────────────────
+  const playPopSound = useCallback(() => {
+    try {
+      const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
+      const ctx = new AudioContext();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(600, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(1200, ctx.currentTime + 0.1);
+      gain.gain.setValueAtTime(0, ctx.currentTime);
+      gain.gain.linearRampToValueAtTime(0.15, ctx.currentTime + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.1);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.1);
+    } catch (e) {}
+  }, []);
+
+  // ── Speech Recognition Setup ────────────────────────────────
   useEffect(() => {
-    const t = setTimeout(() => setShowNotification(true), 6000);
+    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+    if (SpeechRecognition) {
+      const recognition = new SpeechRecognition();
+      recognition.continuous = true;
+      recognition.interimResults = true;
+      recognition.lang = "el-GR";
+
+      recognition.onresult = (event: any) => {
+        let finalTranscript = "";
+        for (let i = event.resultIndex; i < event.results.length; ++i) {
+          if (event.results[i].isFinal) {
+            finalTranscript += event.results[i][0].transcript;
+          }
+        }
+        if (finalTranscript) {
+          setInput((prev) => (prev ? prev + " " : "") + finalTranscript.trim());
+        }
+      };
+
+      recognition.onerror = () => setIsListening(false);
+      recognition.onend = () => setIsListening(false);
+      recognitionRef.current = recognition;
+    }
+  }, []);
+
+  const toggleListening = () => {
+    if (isListening) {
+      recognitionRef.current?.stop();
+      setIsListening(false);
+    } else {
+      if (recognitionRef.current) {
+        recognitionRef.current.start();
+        setIsListening(true);
+      } else {
+        alert("Η φωνητική πληκτρολόγηση δεν υποστηρίζεται σε αυτόν τον browser.");
+      }
+    }
+  };
+
+  // ── Session Persistence ──────────────────────────────────────
+  useEffect(() => {
+    const savedMessages = sessionStorage.getItem("digi_chat_messages");
+    const savedCount = sessionStorage.getItem("digi_chat_count");
+    if (savedMessages) {
+      try {
+        const parsed = JSON.parse(savedMessages);
+        setMessages(
+          parsed.map((m: any) => ({
+            ...m,
+            timestamp: m.timestamp ? new Date(m.timestamp) : new Date(),
+          }))
+        );
+      } catch (e) {}
+    }
+    if (savedCount) setExchangeCount(parseInt(savedCount, 10));
+    setIsInitialized(true);
+  }, []);
+
+  useEffect(() => {
+    if (isInitialized) {
+      sessionStorage.setItem("digi_chat_messages", JSON.stringify(messages));
+      sessionStorage.setItem("digi_chat_count", exchangeCount.toString());
+    }
+  }, [messages, exchangeCount, isInitialized]);
+
+  // Show notification bubble after 2 seconds
+  useEffect(() => {
+    const t = setTimeout(() => setShowNotification(true), 2000);
     return () => clearTimeout(t);
   }, []);
   useEffect(() => {
@@ -82,17 +174,27 @@ export default function DigiChat() {
 
   // Greeting on first open
   useEffect(() => {
-    if (isOpen && messages.length === 0) {
+    if (isOpen && messages.length === 0 && isInitialized) {
+      const path = window.location.pathname;
+      let contextGreeting = "Είτε ψάχνεις για ιστοσελίδα, Google Ads, SEO ή τίποτα συγκεκριμένο ακόμα — είμαι εδώ να σε βοηθήσω να βρεις τη σωστή λύση.";
+      
+      if (path.includes("web-design") || path.includes("kataskevi-istoselidon")) {
+        contextGreeting = "Βλέπω ότι ενδιαφέρεσαι για **Κατασκευή Ιστοσελίδων**. Μπορώ να σου εξηγήσω πώς σχεδιάζουμε premium, ταχύτατα sites που φέρνουν πωλήσεις.";
+      } else if (path.includes("tourism-marketing") || path.includes("touristiko-marketing")) {
+        contextGreeting = "Βλέπω ότι σε ενδιαφέρει το **Τουριστικό Marketing**. Έχουμε ειδικές στρατηγικές (Google/Meta Ads) αποκλειστικά για ξενοδοχεία και βίλες που αυξάνουν τις απευθείας κρατήσεις.";
+      } else if (path.includes("photo-services") || path.includes("drone-services")) {
+        contextGreeting = "Βλέπω ότι κοιτάς τις **Υπηρεσίες Φωτογράφισης & Drone**. Μια επαγγελματική εικόνα είναι το 50% της πώλησης! Θέλεις να δούμε πώς μπορούμε να αναδείξουμε το project σου;";
+      }
+
       const greeting: Message = {
         id: "greeting",
         role: "assistant",
-        content:
-          "Γεια σου! 👋 Είμαι ο **DIGI**, ο ψηφιακός σύμβουλος της DIGIADS.\n\nΕίτε ψάχνεις για ιστοσελίδα, Google Ads, SEO ή τίποτα συγκεκριμένο ακόμα — είμαι εδώ να σε βοηθήσω να βρεις τη σωστή λύση.\n\n**Πες μου, με τι ασχολείται η επιχείρησή σου;** 🚀",
+        content: `Γεια σου! 👋 Είμαι ο **DIGI**, ο ψηφιακός σύμβουλος της DIGIADS.\n\n${contextGreeting}\n\n**Πες μου, με τι ακριβώς ασχολείται η επιχείρησή σου;** 🚀`,
         timestamp: new Date(),
       };
       setMessages([greeting]);
     }
-  }, [isOpen, messages.length]);
+  }, [isOpen, messages.length, isInitialized]);
 
   // Scroll to bottom
   useEffect(() => {
@@ -121,35 +223,96 @@ export default function DigiChat() {
       const newMessages = [...messages, userMsg];
       setMessages(newMessages);
       setInput("");
-      setIsTyping(true);
-
+      
+      setAgentState("reading");
       const newCount = exchangeCount + 1;
       setExchangeCount(newCount);
 
       try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 45000); // 45s max duration
+
+        setAgentState("analyzing");
+
         const res = await fetch("/api/digi-chat", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             messages: newMessages.map((m) => ({ role: m.role, content: m.content })),
             exchangeCount: newCount,
+            currentPage: window.location.pathname
           }),
+          signal: controller.signal,
         });
 
-        const data = await res.json();
+        setAgentState("typing"); // begin streaming!
 
-        const botMsg: Message = {
-          id: `b-${Date.now()}`,
-          role: "assistant",
-          content: data.message ?? "Συγγνώμη, κάτι πήγε στραβά.",
-          timestamp: new Date(),
-        };
+        const contentType = res.headers.get("content-type");
+        if (contentType && contentType.includes("application/json")) {
+          const data = await res.json();
+          setMessages((prev) => [
+            ...prev,
+            { id: `b-${Date.now()}`, role: "assistant", content: data.message || "Συγγνώμη, κάτι πήγε στραβά.", timestamp: new Date() },
+          ]);
+          setAgentState("online");
+          return;
+        }
 
-        setMessages((prev) => [...prev, botMsg]);
+        const reader = res.body?.getReader();
+        const decoder = new TextDecoder("utf-8");
+        let done = false;
+        let buffer = "";
+        let botMessage = "";
+        const botMsgId = `b-${Date.now()}`;
 
-        // Show lead form after 3 exchanges (with a delay)
-        if (data.captureLeads && !showLeadForm && !leadSubmitted) {
-          setTimeout(() => setShowLeadForm(true), 1500);
+        // Initial empty message to stream into
+        setMessages((prev) => [
+          ...prev,
+          { id: botMsgId, role: "assistant", content: "", timestamp: new Date() },
+        ]);
+        playPopSound();
+
+        if (reader) {
+          while (!done) {
+            const { value, done: readerDone } = await reader.read();
+            done = readerDone;
+            if (value) {
+              buffer += decoder.decode(value, { stream: true });
+              const lines = buffer.split("\n");
+              buffer = lines.pop() || ""; // Keep the last incomplete line in buffer
+              
+              for (const line of lines) {
+                if (line.trim().startsWith("data: ")) {
+                  const dataStr = line.replace("data: ", "").trim();
+                  if (!dataStr || dataStr === "[DONE]") continue;
+                  try {
+                    const data = JSON.parse(dataStr);
+                    const textPart = data.candidates?.[0]?.content?.parts?.[0]?.text;
+                    if (textPart) {
+                      botMessage += textPart;
+                      if (botMessage.includes("[SHOW_FORM]") && !showLeadForm && !leadSubmitted) {
+                        setShowLeadForm(true);
+                      }
+                      setMessages((prev) =>
+                        prev.map((m) =>
+                          m.id === botMsgId ? { ...m, content: botMessage } : m
+                        )
+                      );
+                    }
+                  } catch (e) {
+                    // Ignore parse errors from partial JSON chunks
+                  }
+                }
+              }
+            }
+          }
+        }
+        
+        clearTimeout(timeoutId);
+
+        // Fallback: Show lead form after 4 exchanges if it hasn't popped up yet
+        if (newCount >= 4 && !showLeadForm && !leadSubmitted) {
+          setTimeout(() => setShowLeadForm(true), 2500);
         }
       } catch {
         setMessages((prev) => [
@@ -163,7 +326,7 @@ export default function DigiChat() {
           },
         ]);
       } finally {
-        setIsTyping(false);
+        setAgentState("online");
       }
     },
     [messages, isTyping, exchangeCount, showLeadForm, leadSubmitted]
@@ -293,7 +456,7 @@ export default function DigiChat() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 40, scale: 0.95 }}
             transition={{ type: "spring", stiffness: 380, damping: 30 }}
-            className="fixed bottom-24 right-6 z-[9997] w-[380px] max-w-[calc(100vw-1.5rem)] h-[560px] max-h-[calc(100vh-8rem)] flex flex-col bg-[#060b1a]/95 backdrop-blur-2xl border border-white/8 rounded-2xl shadow-2xl shadow-black/60 overflow-hidden"
+            className="fixed z-[9997] flex flex-col bg-[#060b1a]/95 backdrop-blur-2xl border border-white/8 shadow-2xl shadow-black/60 overflow-hidden bottom-0 right-0 w-full h-[85dvh] max-h-[85dvh] rounded-t-3xl border-x-0 border-b-0 sm:bottom-24 sm:right-6 sm:w-[380px] sm:max-w-[calc(100vw-1.5rem)] sm:h-[560px] sm:max-h-[calc(100vh-8rem)] sm:rounded-2xl sm:border"
             style={{ boxShadow: "0 25px 60px -15px rgba(0,0,0,0.7), 0 0 0 1px rgba(0,217,255,0.05)" }}
           >
             {/* Header */}
@@ -305,8 +468,13 @@ export default function DigiChat() {
                 <span className="absolute bottom-0 right-0 w-3 h-3 bg-green-400 rounded-full border-2 border-[#060b1a]" />
               </div>
               <div className="flex-1">
-                <p className="text-white font-bold text-sm">DIGI</p>
-                <p className="text-[#00d9ff] text-xs font-mono tracking-wide">Virtual Sales Agent · Online</p>
+                <p className="text-white font-bold text-sm m-0 leading-tight">DIGI</p>
+                <p className="text-[#00d9ff] text-[11px] font-mono tracking-widest m-0 mt-0.5">
+                  {agentState === "online" ? "Virtual Sales Agent · Online" : 
+                   agentState === "reading" ? "Virtual Sales Agent · διαβάζει..." : 
+                   agentState === "analyzing" ? "Virtual Sales Agent · σκέφτεται..." : 
+                   "Virtual Sales Agent · πληκτρολογεί..."}
+                </p>
               </div>
               {/* Lead form toggle */}
               {!leadSubmitted && (
@@ -325,7 +493,7 @@ export default function DigiChat() {
             {/* Body: messages + lead form overlay */}
             <div className="relative flex-1 overflow-hidden">
               {/* Messages */}
-              <div className="h-full overflow-y-auto px-4 py-4 space-y-1" data-lenis-prevent>
+              <div className="digi-scroll h-full overflow-y-auto px-4 py-4 space-y-1" data-lenis-prevent>
                 {messages.map((msg) => (
                   <div
                     key={msg.id}
@@ -354,7 +522,7 @@ export default function DigiChat() {
                 ))}
 
                 {/* Typing indicator */}
-                {isTyping && <TypingIndicator />}
+                {(agentState === "reading" || agentState === "analyzing") && <TypingIndicator />}
                 <div ref={messagesEndRef} />
               </div>
 
@@ -374,6 +542,7 @@ export default function DigiChat() {
             {!showLeadForm && (
               <DigiQuickReplies
                 onSelect={sendMessage}
+                onOpenForm={() => setShowLeadForm(true)}
                 disabled={isTyping}
                 exchangeCount={exchangeCount}
               />
@@ -385,13 +554,27 @@ export default function DigiChat() {
                 onSubmit={handleSubmit}
                 className="flex items-center gap-2 px-4 py-3 border-t border-white/5"
               >
+                <button
+                  type="button"
+                  onClick={toggleListening}
+                  className={`w-10 h-10 flex-shrink-0 rounded-xl flex items-center justify-center transition-all border ${
+                    isListening
+                      ? "bg-red-500/20 border-red-500 text-red-500 animate-pulse"
+                      : "bg-white/5 border-white/10 text-white hover:bg-white/10"
+                  }`}
+                  title="Φωνητική Πληκτρολόγηση"
+                >
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                  </svg>
+                </button>
                 <input
                   ref={inputRef}
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Γράψε το μήνυμά σου..."
                   disabled={isTyping}
-                  className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-[#00d9ff]/40 transition-all disabled:opacity-50"
+                  className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 sm:py-2.5 text-base sm:text-sm text-white placeholder-slate-600 focus:outline-none focus:border-[#00d9ff]/40 transition-all disabled:opacity-50"
                   maxLength={500}
                 />
                 <motion.button
@@ -415,6 +598,24 @@ export default function DigiChat() {
           </motion.div>
         )}
       </AnimatePresence>
+      <style>{`
+        @keyframes ping {
+          75%, 100% { transform: scale(2); opacity: 0; }
+        }
+        .digi-scroll::-webkit-scrollbar {
+          width: 6px;
+        }
+        .digi-scroll::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        .digi-scroll::-webkit-scrollbar-thumb {
+          background: rgba(255, 255, 255, 0.1);
+          border-radius: 10px;
+        }
+        .digi-scroll::-webkit-scrollbar-thumb:hover {
+          background: rgba(255, 255, 255, 0.2);
+        }
+      `}</style>
     </>
   );
 }

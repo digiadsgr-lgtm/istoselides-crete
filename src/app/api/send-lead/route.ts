@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
+import nodemailer from "nodemailer";
+import { buildLeadConfirmationEmail, buildOwnerNotificationEmail } from "@/lib/digiKnowledgeBase";
 
 export const runtime = "nodejs";
 
@@ -10,21 +12,6 @@ interface LeadPayload {
   chatSummary: string;
 }
 
-async function sendViaEmailJS(templateId: string, templateParams: Record<string, string>) {
-  const response = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      service_id: process.env.EMAILJS_SERVICE_ID,
-      template_id: templateId,
-      user_id: process.env.EMAILJS_PUBLIC_KEY,
-      accessToken: process.env.EMAILJS_PRIVATE_KEY,
-      template_params: templateParams,
-    }),
-  });
-  return response;
-}
-
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json() as LeadPayload;
@@ -34,43 +21,55 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Συμπλήρωσε όνομα και email" }, { status: 400 });
     }
 
-    const now = new Date().toLocaleString("el-GR", { timeZone: "Europe/Athens" });
+    const user = (process.env.SMTP_EMAIL || "").trim();
+    const pass = (process.env.SMTP_PASSWORD || "").trim();
+    const notificationEmail = (process.env.NOTIFICATION_EMAIL || "digiadsgr@gmail.com").trim();
 
-    // ─── 1. Confirmation email to the lead ──────────────────
-    const leadEmailParams = {
-      to_name: name,
-      to_email: email,
-      service_interest: service ?? "Γενική Πληροφόρηση",
-      chat_summary: chatSummary,
-      sent_at: now,
-      reply_email: "info@digiads.gr",
-    };
+    if (!user || !pass) {
+      console.error("Missing SMTP credentials in environment variables.");
+      return NextResponse.json({ success: false, error: "Το σύστημα αποστολής δεν έχει ρυθμιστεί." }, { status: 500 });
+    }
 
-    // ─── 2. Notification email to DIGIADS ───────────────────
-    const notifyEmailParams = {
-      lead_name: name,
-      lead_email: email,
-      lead_phone: phone ?? "Δεν δόθηκε",
-      lead_service: service ?? "Δεν διευκρινίστηκε",
-      chat_summary: chatSummary,
-      sent_at: now,
-      notify_email: process.env.NOTIFICATION_EMAIL ?? "digiadsgr@gmail.com",
-    };
+    const transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
+      auth: { user, pass },
+      tls: {
+        // do not fail on invalid certs
+        rejectUnauthorized: false
+      }
+    });
 
-    const templateLead = process.env.EMAILJS_TEMPLATE_LEAD ?? "template_lead_confirm";
-    const templateNotify = process.env.EMAILJS_TEMPLATE_NOTIFY ?? "template_notify_owner";
+    const leadHtml = buildLeadConfirmationEmail({ name, service: service ?? "", chatSummary });
+    const notifyHtml = buildOwnerNotificationEmail({ name, email, phone: phone ?? "", service: service ?? "", chatSummary });
 
-    // Send both emails in parallel
-    const [leadRes, notifyRes] = await Promise.allSettled([
-      sendViaEmailJS(templateLead, leadEmailParams),
-      sendViaEmailJS(templateNotify, notifyEmailParams),
-    ]);
+    // Send the email to the lead
+    const leadResult = await transporter.sendMail({
+      from: `"DIGIADS Virtual Agent" <${user}>`,
+      to: email,
+      replyTo: notificationEmail,
+      subject: "Επιβεβαίωση Αίτησης — DIGIADS",
+      html: leadHtml,
+    }).catch(err => {
+      console.error("Error sending lead email:", err);
+      return null;
+    });
 
-    const leadOk = leadRes.status === "fulfilled" && leadRes.value.ok;
-    const notifyOk = notifyRes.status === "fulfilled" && notifyRes.value.ok;
+    // Send the notification to the owner
+    const notifyResult = await transporter.sendMail({
+      from: `"DIGIADS Virtual Agent" <${user}>`,
+      to: notificationEmail,
+      replyTo: email,
+      subject: `Νέο Lead: ${name} 🎯`,
+      html: notifyHtml,
+    }).catch(err => {
+      console.error("Error sending owner email:", err);
+      return null;
+    });
 
-    if (!leadOk || !notifyOk) {
-      console.warn("Email partial failure:", { leadOk, notifyOk });
+    if (!leadResult && !notifyResult) {
+      return NextResponse.json({ success: false, error: "Απέτυχε η αποστολή. Επικοινώνησε μαζί μας στο info@digiads.gr" }, { status: 500 });
     }
 
     return NextResponse.json({
@@ -78,7 +77,7 @@ export async function POST(req: NextRequest) {
       message: "Η αίτηση ελήφθη! Σου στείλαμε email επιβεβαίωσης.",
     });
   } catch (error) {
-    console.error("Lead send error:", error);
-    return NextResponse.json({ success: false, error: "Αποτυχία αποστολής" }, { status: 500 });
+    console.error("Lead send critical error:", error);
+    return NextResponse.json({ success: false, error: "Αποτυχία συστήματος" }, { status: 500 });
   }
 }

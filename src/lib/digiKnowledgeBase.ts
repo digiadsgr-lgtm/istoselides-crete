@@ -1,5 +1,6 @@
 // ============================================================
 // DIGI KNOWLEDGE BASE — The Brain of the Virtual Sales Agent
+// Shared between digiads-astro AND digiads-headless
 // ============================================================
 
 export const DIGI_KNOWLEDGE_BASE = {
@@ -9,7 +10,6 @@ export const DIGI_KNOWLEDGE_BASE = {
     location: "Ρέθυμνο, Κρήτη (Κολοκοτρώνη 34)",
     email: "info@digiads.gr",
     hours: "Δευτέρα–Παρασκευή, 09:00–18:00",
-    founded: "2018",
     clients: "200+",
     rating: "5.0 ★",
     description:
@@ -19,261 +19,371 @@ export const DIGI_KNOWLEDGE_BASE = {
   services: {
     "performance-ads": {
       name: "Performance Ads (Google & Meta)",
-      shortName: "Διαφημίσεις Google & Facebook",
       plain_description:
-        "Βάζουμε τη διαφήμισή σου μπροστά σε ανθρώπους που ψάχνουν ΑΚΡΙΒΩΣ αυτό που πουλάς. Δεν χάνεις χρήματα σε λάθος κοινό — κάθε ευρώ που ξοδεύεις δουλεύει.",
-      benefits: [
-        "Άμεσα αποτελέσματα από την πρώτη μέρα",
-        "Πληρώνεις μόνο όταν κάποιος κάνει κλικ",
-        "Βλέπεις ακριβώς τι δουλεύει και τι όχι",
-        "Μέσος ROI +127% για τους πελάτες μας",
-      ],
-      idealFor: ["E-shops", "Τουριστικές επιχειρήσεις", "Τοπικές επιχειρήσεις", "B2B"],
-      avgROI: "+127%",
+        "Βάζουμε τη διαφήμισή σου μπροστά σε ανθρώπους που ψάχνουν ΑΚΡΙΒΩΣ αυτό που πουλάς. Κάθε ευρώ που ξοδεύεις δουλεύει. Μέσος ROI +127% για τους πελάτες μας.",
+      idealFor: "E-shops, τουριστικές & τοπικές επιχειρήσεις, B2B",
     },
     "web-design": {
       name: "Κατασκευή Ιστοσελίδας & E-shop",
-      shortName: "Ιστοσελίδα / E-shop",
       plain_description:
-        "Φτιάχνουμε ιστοσελίδες που όχι απλά φαίνονται καλές, αλλά ΠΟΥΛΑΝΕ. Γρήγορες, mobile-friendly και βελτιστοποιημένες για Google — ώστε να σε βρίσκουν οι σωστοί πελάτες.",
-      benefits: [
-        "Ταχύτητα φόρτωσης κάτω από 1 δευτερόλεπτο",
-        "Τέλεια εμφάνιση σε κινητό και tablet",
-        "Βαθμολογία Google 100/100",
-        "Σχεδιασμένη για να μετατρέπει επισκέπτες σε πελάτες",
-      ],
-      idealFor: ["Κάθε επιχείρηση", "Νέες εκκινήσεις", "Υπάρχοντες χώρος βελτίωσης"],
+        "Ιστοσελίδες που φαίνονται καλές και ΠΟΥΛΑΝΕ. Γρήγορες, mobile-friendly, βαθμολογία Google 100/100.",
+      idealFor: "Κάθε επιχείρηση, νέες εκκινήσεις, βελτίωση υπάρχουσας",
     },
     "tourism-marketing": {
       name: "Tourism Marketing",
-      shortName: "Τουριστικό Marketing",
       plain_description:
-        "Ειδικευόμαστε στον τουρισμό. Βοηθάμε βίλες, ξενοδοχεία και airbnb να γεμίζουν απευθείας κρατήσεις, χωρίς να χάνουν 20-30% σε Booking.com και Airbnb.",
-      benefits: [
-        "+340% αύξηση direct bookings",
-        "Λιγότερες προμήθειες σε τρίτες πλατφόρμες",
-        "Επαγγελματικό φωτογραφικό υλικό",
-        "Στρατηγική παρουσία σε Google & Instagram",
-      ],
-      idealFor: ["Βίλες", "Ξενοδοχεία", "Airbnb", "Boutique stays"],
+        "Βοηθάμε βίλες, ξενοδοχεία και airbnb να γεμίζουν απευθείας κρατήσεις χωρίς να χάνουν 20-30% σε Booking/Airbnb. +340% direct bookings.",
+      idealFor: "Βίλες, ξενοδοχεία, Airbnb, boutique stays",
     },
     "brand-strategy": {
       name: "Brand Strategy & Social Media",
-      shortName: "Branding & Social Media",
       plain_description:
-        "Χτίζουμε το brand σου από μηδέν ή το αναβαθμίζουμε. Φροντίζουμε να φαίνεσαι επαγγελματικός, αξιόπιστος και να ξεχωρίζεις από τον ανταγωνισμό.",
-      benefits: [
-        "Συνεπής εικόνα σε όλες τις πλατφόρμες",
-        "Περιεχόμενο που δημιουργεί εμπιστοσύνη",
-        "Αυξημένη αναγνωρισιμότητα",
-        "Community που μετατρέπεται σε πελάτες",
-      ],
-      idealFor: ["Νέες επιχειρήσεις", "Rebranding", "Επιχειρήσεις που θέλουν ανάπτυξη"],
+        "Χτίζουμε το brand σου ή το αναβαθμίζουμε. Φαίνεσαι επαγγελματικός και ξεχωρίζεις από τον ανταγωνισμό.",
+      idealFor: "Νέες επιχειρήσεις, rebranding, ανάπτυξη",
     },
     seo: {
       name: "SEO & Local SEO",
-      shortName: "SEO / Google Ranking",
       plain_description:
-        "Σε βάζουμε στην κορυφή του Google όταν κάποιος ψάχνει αυτό που προσφέρεις. Αποτελέσματα που μένουν για χρόνια — όχι μόνο όσο πληρώνεις διαφήμιση.",
-      benefits: [
-        "Δωρεάν οργανική επισκεψιμότητα",
-        "Εμφάνιση στο Google Maps",
-        "Αξιοπιστία — οι χρήστες εμπιστεύονται οργανικά αποτελέσματα",
-        "Μακροπρόθεσμη επένδυση",
-      ],
-      idealFor: ["Τοπικές επιχειρήσεις", "Επαγγελματίες", "E-shops"],
+        "Στην κορυφή του Google όταν σε ψάχνουν. Δωρεάν οργανική επισκεψιμότητα που μένει για χρόνια — όχι μόνο όσο πληρώνεις διαφήμιση.",
+      idealFor: "Τοπικές επιχειρήσεις, επαγγελματίες, e-shops",
     },
     "photo-drone": {
       name: "Φωτογράφιση & Drone",
-      shortName: "Photo & Drone",
       plain_description:
-        "Επαγγελματικές φωτογραφίες και drone video που κάνουν την επιχείρησή σου να φαίνεται εντυπωσιακή. Γιατί η πρώτη εντύπωση γίνεται πάντα από την εικόνα.",
-      benefits: [
-        "4K cinematic drone video",
-        "Επαγγελματική φωτογράφιση χώρου & προϊόντων",
-        "Virtual tours 360°",
-        "Υλικό έτοιμο για social media & website",
-      ],
-      idealFor: ["Τουριστικές επιχειρήσεις", "Εστιατόρια", "Hotels", "Real estate"],
+        "4K cinematic drone video & επαγγελματικές φωτογραφίες. Η πρώτη εντύπωση γίνεται πάντα από την εικόνα.",
+      idealFor: "Τουριστικές επιχειρήσεις, εστιατόρια, hotels, real estate",
     },
   },
 
   pricing: {
-    note: "Τιμές ενδεικτικές. Κάθε πρόταση είναι εξατομικευμένη.",
-    tiers: {
-      starter: {
-        label: "Starter",
-        tagline: "Για αρχή που μετράει",
-        website: "από 800€",
-        eshop: "από 1.500€",
-        seo_monthly: "από 250€/μήνα",
-        google_ads_monthly: "από 300€/μήνα",
-        social_media_monthly: "από 200€/μήνα",
-        tourism_package: "από 1.200€",
-        photo_drone: "από 400€",
-      },
-      growth: {
-        label: "Growth",
-        tagline: "Για επιχειρήσεις που θέλουν να κλιμακωθούν",
-        website: "από 1.500€",
-        eshop: "από 3.000€",
-        seo_monthly: "από 450€/μήνα",
-        google_ads_monthly: "από 600€/μήνα",
-        social_media_monthly: "από 400€/μήνα",
-        tourism_package: "από 2.500€",
-        photo_drone: "από 700€",
-      },
-      premium: {
-        label: "Premium",
-        tagline: "Για επιχειρήσεις που δεν συμβιβάζονται",
-        website: "από 3.000€",
-        eshop: "από 6.000€",
-        seo_monthly: "από 900€/μήνα",
-        google_ads_monthly: "από 1.200€/μήνα",
-        social_media_monthly: "από 800€/μήνα",
-        tourism_package: "από 5.000€",
-        photo_drone: "από 1.500€",
-      },
-    },
-    investment_framing:
-      "Μην το βλέπεις ως κόστος — είναι επένδυση. Ένας πελάτης μας με budget 600€/μήνα σε Google Ads είδε έσοδα 8.400€ μέσα στους πρώτους 3 μήνες.",
+    website: { starter: "από 800€", growth: "από 1.500€", premium: "από 3.000€" },
+    eshop: { starter: "από 1.500€", growth: "από 3.000€", premium: "από 6.000€" },
+    seo: { starter: "από 250€/μήνα", growth: "από 450€/μήνα", premium: "από 900€/μήνα" },
+    google_ads: { starter: "από 300€/μήνα", growth: "από 600€/μήνα", premium: "από 1.200€/μήνα" },
+    social_media: { starter: "από 200€/μήνα", growth: "από 400€/μήνα", premium: "από 800€/μήνα" },
+    tourism: { starter: "από 1.200€", growth: "από 2.500€", premium: "από 5.000€" },
+    photo_drone: { starter: "από 400€", growth: "από 700€", premium: "από 1.500€" },
   },
 
   socialProof: [
-    {
-      industry: "Τουρισμός",
-      result: "Villa στο Ρέθυμνο: από 30% σε 85% direct bookings σε 4 μήνες",
-    },
-    {
-      industry: "Εστιατόριο",
-      result: "Εστιατόριο Χανιά: +180% κρατήσεις μέσω Google σε 6 μήνες",
-    },
-    {
-      industry: "E-shop",
-      result: "Eshop ειδών σπιτιού: ROI 380% σε Google Shopping Ads",
-    },
-    {
-      industry: "Ιατρός",
-      result: "Ιατρείο Ηράκλειο: #1 Google για 12 keywords σε 5 μήνες",
-    },
-    {
-      industry: "Κατασκευές",
-      result: "Κατασκευαστική εταιρεία: 40 νέες επαφές/μήνα από SEO",
-    },
+    "Villa Ρέθυμνο: από 30% → 85% direct bookings σε 4 μήνες",
+    "Εστιατόριο Χανιά: +180% κρατήσεις μέσω Google σε 6 μήνες",
+    "E-shop ειδών σπιτιού: ROI 380% σε Google Shopping Ads",
+    "Ιατρείο Ηράκλειο: #1 Google για 12 keywords σε 5 μήνες",
+    "Κατασκευαστική εταιρεία: 40 νέες επαφές/μήνα από SEO",
   ],
 
-  objectionHandling: {
-    "είναι ακριβό": "Καταλαβαίνω — αλλά σκέψου το ανάποδα: πόσο σε κοστίζει η απουσία από το digital; Αν χάνεις 5 πελάτες τον μήνα γιατί δεν σε βρίσκουν online, το κόστος της μη-παρουσίας είναι πολύ μεγαλύτερο.",
-    "δεν έχω χρόνο":
-      "Γι' αυτό ακριβώς υπάρχουμε εμείς. Αναλαμβάνουμε τα πάντα — εσύ ασχολείσαι με την επιχείρησή σου.",
-    "το κάνω μόνος μου":
-      "Σεβαστό! Αλλά φέρε μου ένα παράδειγμα σε ποια υπηρεσία θέλεις — να δούμε αν πραγματικά αξίζει να το διαχειρίζεσαι μόνος σου ή αν εμείς μπορούμε να σου δώσουμε πολύ καλύτερα αποτελέσματα.",
-    "είχα κακή εμπειρία":
-      "Δυστυχώς το ακούμε αυτό συχνά. Η αγορά έχει πολλές εταιρείες που υπόσχονται πολλά. Εμείς έχουμε 200+ πελάτες και 5 αστέρια — και θα χαρώ να σου δείξω συγκεκριμένα αποτελέσματα από τον κλάδο σου.",
-    "δεν έχω budget":
-      "Ξεκινάμε από όπου μπορείς. Έχουμε Starter πακέτα από 200€/μήνα. Σημαντικό είναι να αρχίσεις — μπορούμε να κλιμακωθούμε μαζί.",
+  objections: {
+    "ακριβό": "Σκέψου το ανάποδα: πόσο σε κοστίζει η απουσία από το digital; Αν χάνεις 5 πελάτες/μήνα, το κόστος της μη-παρουσίας είναι πολύ μεγαλύτερο.",
+    "χρόνος": "Γι' αυτό υπάρχουμε εμείς. Αναλαμβάνουμε τα πάντα — εσύ ασχολείσαι με την επιχείρησή σου.",
+    "εμπειρία": "Έχουμε 200+ πελάτες και 5★ αξιολόγηση. Μπορώ να σου δείξω αποτελέσματα από τον κλάδο σου.",
+    "budget": "Ξεκινάμε από όπου μπορείς — από 200€/μήνα. Μπορούμε να κλιμακωθούμε μαζί.",
   },
-
-  urgency: [
-    "Αυτή τη στιγμή δεχόμαστε 2-3 νέους πελάτες τον μήνα για να διατηρούμε υψηλή ποιότητα.",
-    "Για τον Μάιο έχουμε ήδη 1 θέση κλεισμένη.",
-    "Η καλοκαιρινή σεζόν πλησιάζει — οι επιχειρήσεις που ξεκινούν τώρα θα είναι έτοιμες να την εκμεταλλευτούν.",
-  ],
-
-  faqs: [
-    {
-      q: "Πόσο κοστίζει μια ιστοσελίδα;",
-      a: "Εξαρτάται από τις ανάγκες σου. Ξεκινάμε από 800€ για μια επαγγελματική 5-σελίδα ιστοσελίδα. Αλλά πες μου πρώτα τι κάνει η επιχείρησή σου — να σου δω τι ακριβώς χρειάζεσαι.",
-    },
-    {
-      q: "Πόσο κοστίζει SEO;",
-      a: "Το SEO είναι μηνιαία υπηρεσία. Ξεκινάμε από 250€/μήνα για τοπικές επιχειρήσεις. Τα αποτελέσματα φαίνονται από τον 2ο-3ο μήνα και γίνονται ισχυρά στους 6-12 μήνες.",
-    },
-    {
-      q: "Πόσο κοστίζει Google Ads;",
-      a: "Το κόστος της διαχείρισης ξεκινά από 300€/μήνα. Εκτός από αυτό υπάρχει και το ad budget (το ποσό που δίνεις στην Google) — συνήθως προτείνουμε τουλάχιστον 300-500€ για ικανοποιητικά αποτελέσματα.",
-    },
-    {
-      q: "Πόσο καιρό παίρνει να δω αποτελέσματα;",
-      a: "Εξαρτάται από την υπηρεσία: Google Ads → αμέσως. SEO → 2-4 μήνες. Νέα ιστοσελίδα → άμεσα online, αποτελέσματα από τον 1ο μήνα.",
-    },
-    {
-      q: "Δουλεύετε με επιχειρήσεις εκτός Κρήτης;",
-      a: "Ναι! Η έδρα μας είναι στο Ρέθυμνο αλλά εξυπηρετούμε πελάτες σε όλη την Ελλάδα και στο εξωτερικό. Όλη η επικοινωνία γίνεται ψηφιακά.",
-    },
-    {
-      q: "Τι με κάνετε να ξεχωρίζετε;",
-      a: "Τρία πράγματα: 1) Δεν παίρνουμε πολλούς πελάτες — εστιαζόμαστε στην ποιότητα. 2) Είμαστε boutique agency — δεν είσαι αριθμός. 3) Μετράμε αποτελέσματα — δεν κρυβόμαστε πίσω από εκθέσεις.",
-    },
-    {
-      q: "Έχετε συμβόλαιο;",
-      a: "Για μηνιαίες υπηρεσίες (SEO, Ads) υπάρχει ελάχιστη περίοδος 3 μηνών για να δεις αποτελέσματα. Δεν δεσμεύουμε μακροπρόθεσμα — η σχέση μας χτίζεται στα αποτελέσματα.",
-    },
-  ],
 };
 
 // ============================================================
-// DIGI SYSTEM PROMPT — The Sales Persona
+// DIGI SYSTEM PROMPT
 // ============================================================
-
 export function buildDigiSystemPrompt(): string {
   const kb = DIGI_KNOWLEDGE_BASE;
 
-  return `Είσαι ο DIGI, ο κορυφαίος ψηφιακός σύμβουλος πωλήσεων της DIGIADS.
+  return `Είσαι ο DIGI, ο κορυφαίος AI Σύμβουλος Πωλήσεων της DIGIADS — premium boutique digital agency στο Ρέθυμνο. Δεν είσαι ένα απλό ρομπότ εξυπηρέτησης· είσαι ένας υπερ-ευφυής, "Chameleon" πωλητής που συνδυάζει ψυχολογία, νευροεπιστήμη και ανθρωπολογία πωλήσεων.
 
-## ΤΑΥΤΟΤΗΤΑ
-Εκπροσωπείς την ${kb.company.name} — ${kb.company.tagline} στο ${kb.company.location}.
-Έχεις εμπειρία ${kb.company.clients} πελατών και αξιολόγηση ${kb.company.rating}.
+ΣΚΟΠΟΣ: Να χτίσεις ακραία εμπιστοσύνη σε δευτερόλεπτα, να ταυτιστείς με τον χρήστη και να τον καθοδηγήσεις ομαλά στο να ζητήσει πρόταση.
 
-## ΠΡΟΣΩΠΙΚΟΤΗΤΑ
-- Ζεστός, σίγουρος, ειλικρινής
-- Μιλάς ΠΑΝΤΑ Ελληνικά (αν ο χρήστης γράψει Αγγλικά, απαντάς Αγγλικά)
-- Χρησιμοποιείς ΑΠΛΗ γλώσσα — ΟΧΙ τεχνική ορολογία
-- Είσαι σύμβουλος που ενδιαφέρεται, ΟΧΙ pushy πωλητής
-- Χρησιμοποιείς 1-2 emojis ανά μήνυμα φυσικά
+1. ΠΡΟΣΑΡΜΟΣΤΙΚΟΤΗΤΑ & ΚΑΘΡΕΦΤΙΣΜΑ (CHAMELEON FRAMEWORK)
+ΠΡΕΠΕΙ ΝΑ ΑΝΑΛΥΕΙΣ το ύφος του χρήστη σε κάθε μήνυμα και να ΠΡΟΣΑΡΜΟΖΕΣΑΙ ΑΚΑΡΙΑΙΑ:
+- Αν είναι Βιαστικός/Κοφτός ("Πόσο κάνει ένα site;"): Γίνε άμεσος, κοφτός, executive. (π.χ. "Εξαρτάται από τις ανάγκες, από 800€ έως 3000€. Τι ακριβώς πουλάτε να σου πω με ακρίβεια;")
+- Αν είναι Αναλυτικός ("Θα ήθελα να μάθω λεπτομέρειες για το SEO..."): Γίνε expert, δείξε βαθιά γνώση χωρίς τεχνική φλυαρία, εστίασε σε δομή.
+- Αν είναι Διστακτικός/Σκεπτικός: Γίνε Challenger αλλά με ενσυναίσθηση. Χρησιμοποίησε Micro-storytelling (π.χ. "Σε καταλαβαίνω απόλυτα. Είχαμε έναν πελάτη στα Χανιά με την ίδια ακριβώς ανησυχία...").
+- Αν είναι Φιλικός: Γίνε ζεστός, βάλε 1-2 emojis, μίλα σαν συνέταιρος.
 
-## ΜΕΘΟΔΟΛΟΓΙΑ ΠΩΛΗΣΕΩΝ
-Ακολουθείς πάντα αυτή τη σειρά:
-1. ΚΑΤΑΝΟΗΣΗ: Πρώτα ρωτάς για την επιχείρησή τους — ΔΕΝ ξεκινάς με τιμές
-2. ΠΡΟΒΛΗΜΑ: Ανακαλύπτεις τι δεν λειτουργεί ή τι τους λείπει
-3. ΑΞΙΑ: Παρουσιάζεις τη λύση βάσει των αναγκών τους
-4. ΑΠΟΔΕΙΞΗ: Δίνεις ένα σχετικό παράδειγμα επιτυχίας
-5. ΠΡΟΤΑΣΗ: Προτείνεις το κατάλληλο πακέτο για αυτούς
+2. ΨΥΧΟΛΟΓΙΑ ΠΩΛΗΣΕΩΝ (COGNITIVE BIASES)
+- Ενεργητική Ακρόαση & Επιβεβαίωση: Ξεκίνα δείχνοντας ότι τον "άκουσες" ("Έχεις απόλυτο δίκιο", "Κατανοητό", "Αυτό είναι κλασικό πρόβλημα").
+- Loss Aversion (Αποφυγή Απώλειας): Όταν μιλάς για υπηρεσίες, τόνισε διακριτικά τι χάνει σήμερα. (π.χ. "Αυτή τη στιγμή, πελάτες ψάχνουν, αλλά βρίσκουν τον ανταγωνισμό.")
+- Framing: ΠΟΤΕ δεν αναφέρεις τη λέξη "κόστος" ή "έξοδο". Μιλάς μόνο για "Επένδυση" και "Απόσβεση (ROI)".
+- Υπονοούμενο Authority (Scarcity): Μην είσαι "απελπισμένος" για πώληση. (π.χ. "Αναλαμβάνουμε λίγα projects για να κρατάμε την ποιότητα.")
 
-## ΚΑΝΟΝΕΣ
-- ΜΗΝ δίνεις τιμές στα πρώτα 1-2 μηνύματα — πρώτα κατανόησε τις ανάγκες
-- Αν ρωτηθείς αμέσως για τιμή: "Εξαρτάται από τις ανάγκες σου — πες μου λίγα για την επιχείρησή σου"
-- ΠΑΝΤΑ frame τιμές ως επένδυση, όχι κόστος
-- Χρησιμοποίησε social proof φυσικά: "Είχαμε πελάτη στον ίδιο κλάδο..."
-- Δημιούργησε urgency: "Αυτόν τον μήνα έχουμε 2 ελεύθερες θέσεις"
-- ΜΗΝ αναφέρεις τηλέφωνο — μόνο email (info@digiads.gr) και αυτό το chat
-- Μετά από 3-4 exchanges, πρότεινε να στείλεις εξατομικευμένη πρόταση: "Ετοίμασα κάτι για σένα — δώσε μου τα στοιχεία σου"
+3. ΔΟΜΗ ΤΗΣ ΣΥΖΗΤΗΣΗΣ (SPIN SELLING)
+Μην "κάνεις εμετό" πληροφορίες. Οδήγησε τη συζήτηση με έξυπνες ερωτήσεις.
+- Situation: Μάθε την επιχείρησή του.
+- Problem: Μάθε τον "πόνο" του.
+- Need-payoff: Δώσε τη λύση μας.
 
-## ΥΠΗΡΕΣΙΕΣ & ΤΙΜΕΣ
-${JSON.stringify(kb.services, null, 2)}
+4. ΓΕΝΙΚΟΙ ΚΑΝΟΝΕΣ:
+- Μιλάς Ελληνικά (ή Αγγλικά αν ζητηθεί).
+- Μιλάς ΑΝΘΡΩΠΙΝΑ. Χρησιμοποίησε fillers ("Λοιπόν...", "Για να είμαι ειλικρινής...").
+- Κράτα τα μηνύματα ΣΥΝΤΟΜΑ (1-3 μικρές παραγράφους). Κανείς δεν διαβάζει "σεντόνια" στο chat.
+- Ποτέ δεν δίνεις τηλέφωνο, μόνο email info@digiads.gr.
+- Μετά από 3-4 γόνιμες ανταλλαγές, πες φυσικά: "Ξέρεις κάτι; Έχω ήδη την εικόνα του τι χρειάζεσαι. Θέλω να σου ετοιμάσω μια εξειδικευμένη πρόταση. Πώς σε λένε και ποιο είναι το email σου;" ΚΑΙ ΣΤΟ ΙΔΙΟ ΜΗΝΥΜΑ, ΠΡΟΣΘΕΣΕ ΣΤΟ ΤΕΛΟΣ ΤΟ KEYWORD: [SHOW_FORM] ώστε να ανοίξει αυτόματα η φόρμα.
 
-## ΤΙΜΟΛΟΓΙΟ
-${JSON.stringify(kb.pricing, null, 2)}
+ΥΠΗΡΕΣΙΕΣ:
+${Object.entries(kb.services).map(([, s]) => `• ${s.name}: ${s.plain_description}`).join("\n")}
 
-## ΠΑΡΑΔΕΙΓΜΑΤΑ ΕΠΙΤΥΧΙΑΣ
-${kb.socialProof.map((s) => `- ${s.industry}: ${s.result}`).join("\n")}
+ΤΙΜΟΛΟΓΙΟ (Δίνεις εύρος ΜΟΝΟ αν σε πιέσουν ή αν καταλάβεις τι θέλουν):
+- Website: ${kb.pricing.website.starter} - ${kb.pricing.website.premium}
+- E-shop: ${kb.pricing.eshop.starter} - ${kb.pricing.eshop.premium}
+- SEO: ${kb.pricing.seo.starter} - ${kb.pricing.seo.premium}
+- Ads: ${kb.pricing.google_ads.starter} - ${kb.pricing.google_ads.premium}
+- Social: ${kb.pricing.social_media.starter} - ${kb.pricing.social_media.premium}
 
-## ΑΝΤΙΜΕΤΩΠΙΣΗ ΑΝΤΙΡΡΗΣΕΩΝ
-${Object.entries(kb.objectionHandling)
-  .map(([obj, resp]) => `Αν πουν "${obj}": ${resp}`)
-  .join("\n")}
+SOCIAL PROOF (Σαν "ιστορίες", όχι σαν λίστα):
+${kb.socialProof.map(s => `• ${s}`).join("\n")}
 
-## URGENCY PHRASES (χρησιμοποίησε φυσικά):
-${kb.urgency.join("\n")}
+ΑΝΤΙΡΡΗΣΕΙΣ:
+${Object.entries(kb.objections).map(([k, v]) => `• Αν πουν "${k}": ${v}`).join("\n")}`;
+}
 
-## ΣΥΧΝΕΣ ΕΡΩΤΗΣΕΙΣ
-${kb.faqs.map((f) => `Ε: ${f.q}\nΑ: ${f.a}`).join("\n\n")}
+// ============================================================
+// EMAIL HTML TEMPLATES
+// ============================================================
 
-## LEAD CAPTURE (ΚΡΙΣΙΜΟ)
-Μετά από 3-4 ανταλλαγές, πες φυσικά:
-"Έχω ήδη μια ιδέα για το τι χρειάζεσαι. Θέλω να σου ετοιμάσω μια εξατομικευμένη πρόταση δωρεάν — μπορείς να μου δώσεις το όνομά σου και το email σου;"
+export function buildLeadConfirmationEmail(data: {
+  name: string;
+  service: string;
+  chatSummary: string;
+}): string {
+  const { name, service, chatSummary } = data;
+  const year = new Date().getFullYear();
 
-Αν ζητήσουν τηλέφωνο ή meeting: "Η επικοινωνία μας γίνεται κυρίως μέσω email — έτσι μπορώ να σου στείλω αναλυτική πρόταση που μπορείς να διαβάσεις στον χρόνο σου. Δώσε μου το email σου!"
+  return `<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Επιβεβαίωση Αίτησης — DIGIADS</title>
+</head>
+<body style="margin:0;padding:0;background:#010205;font-family:'Inter',Arial,sans-serif;">
 
-Απαντάς ΠΑΝΤΑ συνοπτικά (2-4 παράγραφοι max). ΟΧΙ τεράστιες απαντήσεις.`;
+<!-- Outer wrapper -->
+<table width="100%" cellpadding="0" cellspacing="0" style="background:#010205;padding:40px 20px;">
+<tr><td align="center">
+
+<!-- Card -->
+<table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#060b1a;border-radius:20px;border:1px solid rgba(0,217,255,0.12);overflow:hidden;">
+
+  <!-- Header gradient bar -->
+  <tr>
+    <td style="background:linear-gradient(135deg,#00d9ff,#0055ff);padding:4px 0;"></td>
+  </tr>
+
+  <!-- Logo / Brand -->
+  <tr>
+    <td style="padding:40px 48px 32px;text-align:center;">
+      <div style="display:inline-flex;align-items:center;gap:12px;">
+        <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#00d9ff,#0055ff);display:inline-flex;align-items:center;justify-content:center;">
+          <span style="color:#010205;font-weight:900;font-size:18px;line-height:1;">D</span>
+        </div>
+        <span style="color:#ffffff;font-size:22px;font-weight:800;letter-spacing:0.08em;">DIGIADS</span>
+      </div>
+      <p style="color:rgba(0,217,255,0.7);font-size:11px;letter-spacing:0.3em;text-transform:uppercase;margin:8px 0 0;">Virtual Sales Agent · DIGI</p>
+    </td>
+  </tr>
+
+  <!-- Greeting -->
+  <tr>
+    <td style="padding:0 48px 32px;">
+      <h1 style="color:#ffffff;font-size:28px;font-weight:800;margin:0 0 12px;line-height:1.2;">
+        Λάβαμε την αίτησή σου! ✅
+      </h1>
+      <p style="color:rgba(255,255,255,0.65);font-size:16px;line-height:1.6;margin:0;">
+        Γεια σου <strong style="color:#ffffff;">${name}</strong>, ευχαριστούμε για την εμπιστοσύνη σου στη DIGIADS. 
+        Η ομάδα μας θα επικοινωνήσει μαζί σου <strong style="color:#00d9ff;">το συντομότερο</strong> με μια εξατομικευμένη πρόταση.
+      </p>
+    </td>
+  </tr>
+
+  <!-- Divider -->
+  <tr>
+    <td style="padding:0 48px;">
+      <div style="height:1px;background:rgba(255,255,255,0.06);"></div>
+    </td>
+  </tr>
+
+  <!-- Summary box -->
+  <tr>
+    <td style="padding:32px 48px;">
+      <p style="color:rgba(0,217,255,0.8);font-size:11px;letter-spacing:0.25em;text-transform:uppercase;margin:0 0 16px;font-weight:600;">Σύνοψη Αίτησης</p>
+      
+      <table width="100%" cellpadding="0" cellspacing="0" style="background:rgba(0,217,255,0.04);border:1px solid rgba(0,217,255,0.1);border-radius:12px;">
+        <tr>
+          <td style="padding:20px 24px;">
+            <table width="100%" cellpadding="0" cellspacing="8">
+              <tr>
+                <td style="color:rgba(255,255,255,0.45);font-size:12px;padding:6px 0;width:40%;">Υπηρεσία ενδιαφέροντος</td>
+                <td style="color:#ffffff;font-size:13px;font-weight:600;padding:6px 0;">${service || "Γενική πληροφόρηση"}</td>
+              </tr>
+              <tr>
+                <td style="color:rgba(255,255,255,0.45);font-size:12px;padding:6px 0;">Κατάσταση</td>
+                <td style="padding:6px 0;"><span style="background:rgba(34,197,94,0.15);color:#22c55e;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;border:1px solid rgba(34,197,94,0.2);">✓ Αίτηση Ελήφθη</span></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+  <!-- Chat summary -->
+  ${chatSummary ? `
+  <tr>
+    <td style="padding:0 48px 32px;">
+      <p style="color:rgba(0,217,255,0.8);font-size:11px;letter-spacing:0.25em;text-transform:uppercase;margin:0 0 16px;font-weight:600;">Η συνομιλία σου με τον DIGI</p>
+      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:20px 24px;">
+        <p style="color:rgba(255,255,255,0.55);font-size:13px;line-height:1.7;margin:0;white-space:pre-line;">${chatSummary}</p>
+      </div>
+    </td>
+  </tr>
+  ` : ""}
+
+  <!-- Divider -->
+  <tr>
+    <td style="padding:0 48px;">
+      <div style="height:1px;background:rgba(255,255,255,0.06);"></div>
+    </td>
+  </tr>
+
+  <!-- What's next -->
+  <tr>
+    <td style="padding:32px 48px;">
+      <p style="color:rgba(0,217,255,0.8);font-size:11px;letter-spacing:0.25em;text-transform:uppercase;margin:0 0 20px;font-weight:600;">Τι γίνεται στη συνέχεια;</p>
+      <table width="100%" cellpadding="0" cellspacing="0">
+        ${[
+          ["01", "Αξιολόγηση", "Αναλύουμε τις ανάγκες σου και τον κλάδο σου"],
+          ["02", "Εξατομικευμένη Πρόταση", "Ετοιμάζουμε πρόταση με συγκεκριμένο πλάνο & τιμές"],
+          ["03", "Συνεργασία", "Αν αποφασίσεις να συνεργαστούμε, ξεκινάμε αμέσως"],
+        ].map(([num, title, desc]) => `
+        <tr>
+          <td style="padding:10px 0;">
+            <table width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td style="width:36px;vertical-align:top;padding-top:2px;">
+                  <div style="width:28px;height:28px;border-radius:8px;background:rgba(0,217,255,0.1);border:1px solid rgba(0,217,255,0.2);text-align:center;line-height:28px;">
+                    <span style="color:#00d9ff;font-size:11px;font-weight:800;">${num}</span>
+                  </div>
+                </td>
+                <td style="padding-left:14px;">
+                  <p style="color:#ffffff;font-size:14px;font-weight:600;margin:0 0 3px;">${title}</p>
+                  <p style="color:rgba(255,255,255,0.45);font-size:12px;margin:0;">${desc}</p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>`).join("")}
+      </table>
+    </td>
+  </tr>
+
+  <!-- CTA -->
+  <tr>
+    <td style="padding:0 48px 40px;text-align:center;">
+      <a href="mailto:info@digiads.gr" style="display:inline-block;background:linear-gradient(135deg,#00d9ff,#0055ff);color:#010205;font-size:14px;font-weight:800;padding:16px 36px;border-radius:50px;text-decoration:none;letter-spacing:0.05em;">
+        Επικοινωνία — info@digiads.gr
+      </a>
+    </td>
+  </tr>
+
+  <!-- Footer -->
+  <tr>
+    <td style="background:rgba(0,0,0,0.2);padding:24px 48px;text-align:center;border-top:1px solid rgba(255,255,255,0.04);">
+      <p style="color:rgba(255,255,255,0.25);font-size:11px;margin:0;line-height:1.6;">
+        DIGIADS Digital Agency · Κολοκοτρώνη 34, Ρέθυμνο, Κρήτη<br/>
+        <a href="https://www.digiads.gr" style="color:rgba(0,217,255,0.5);text-decoration:none;">www.digiads.gr</a>
+        &nbsp;·&nbsp;
+        <a href="mailto:info@digiads.gr" style="color:rgba(0,217,255,0.5);text-decoration:none;">info@digiads.gr</a>
+      </p>
+      <p style="color:rgba(255,255,255,0.15);font-size:10px;margin:12px 0 0;">© ${year} DIGIADS. Powered by DIGI AI Sales Agent.</p>
+    </td>
+  </tr>
+
+</table>
+<!-- /Card -->
+
+</td></tr>
+</table>
+<!-- /Outer wrapper -->
+
+</body>
+</html>`;
+}
+
+export function buildOwnerNotificationEmail(data: {
+  name: string;
+  email: string;
+  phone: string;
+  service: string;
+  chatSummary: string;
+}): string {
+  const { name, email, phone, service, chatSummary } = data;
+  const now = new Date().toLocaleString("el-GR", { timeZone: "Europe/Athens" });
+  const year = new Date().getFullYear();
+
+  return `<!DOCTYPE html>
+<html lang="el">
+<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/></head>
+<body style="margin:0;padding:0;background:#010205;font-family:'Inter',Arial,sans-serif;">
+<table width="100%" cellpadding="0" cellspacing="0" style="background:#010205;padding:40px 20px;">
+<tr><td align="center">
+<table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#060b1a;border-radius:20px;border:1px solid rgba(168,85,247,0.2);overflow:hidden;">
+
+  <!-- Header -->
+  <tr><td style="background:linear-gradient(135deg,#a855f7,#7c3aed);padding:4px 0;"></td></tr>
+
+  <tr>
+    <td style="padding:36px 48px 28px;">
+      <p style="color:rgba(168,85,247,0.8);font-size:11px;letter-spacing:0.3em;text-transform:uppercase;margin:0 0 8px;font-weight:600;">🔔 DIGI Agent Notification</p>
+      <h1 style="color:#ffffff;font-size:26px;font-weight:800;margin:0;line-height:1.2;">Νέο Lead! 🎯</h1>
+      <p style="color:rgba(255,255,255,0.5);font-size:13px;margin:8px 0 0;">${now}</p>
+    </td>
+  </tr>
+
+  <tr>
+    <td style="padding:0 48px 32px;">
+      <table width="100%" cellpadding="0" cellspacing="0" style="background:rgba(168,85,247,0.05);border:1px solid rgba(168,85,247,0.15);border-radius:14px;">
+        <tr><td style="padding:24px;">
+          <table width="100%" cellpadding="0" cellspacing="0">
+            ${[
+              ["👤 Όνομα", name],
+              ["📧 Email", `<a href="mailto:${email}" style="color:#a855f7;text-decoration:none;">${email}</a>`],
+              ["📱 Τηλέφωνο", phone || "—"],
+              ["🎯 Υπηρεσία", service || "Γενική πληροφόρηση"],
+            ].map(([label, value]) => `
+            <tr>
+              <td style="color:rgba(255,255,255,0.4);font-size:12px;padding:8px 0;width:35%;vertical-align:top;">${label}</td>
+              <td style="color:#ffffff;font-size:14px;font-weight:600;padding:8px 0;">${value}</td>
+            </tr>`).join("")}
+          </table>
+        </td></tr>
+      </table>
+    </td>
+  </tr>
+
+  <tr>
+    <td style="padding:0 48px 32px;">
+      <p style="color:rgba(168,85,247,0.8);font-size:11px;letter-spacing:0.25em;text-transform:uppercase;margin:0 0 14px;font-weight:600;">Ιστορικό Συνομιλίας (DIGI)</p>
+      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:20px 24px;">
+        <p style="color:rgba(255,255,255,0.6);font-size:13px;line-height:1.7;margin:0;white-space:pre-line;">${chatSummary || "—"}</p>
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td style="padding:0 48px 40px;text-align:center;">
+      <a href="mailto:${email}" style="display:inline-block;background:linear-gradient(135deg,#a855f7,#7c3aed);color:#fff;font-size:14px;font-weight:800;padding:16px 36px;border-radius:50px;text-decoration:none;letter-spacing:0.05em;">
+        Απάντηση στον ${name} →
+      </a>
+    </td>
+  </tr>
+
+  <tr>
+    <td style="background:rgba(0,0,0,0.2);padding:20px 48px;text-align:center;border-top:1px solid rgba(255,255,255,0.04);">
+      <p style="color:rgba(255,255,255,0.2);font-size:10px;margin:0;">© ${year} DIGIADS · DIGI AI Sales Agent Internal Report</p>
+    </td>
+  </tr>
+
+</table>
+</td></tr>
+</table>
+</body>
+</html>`;
 }

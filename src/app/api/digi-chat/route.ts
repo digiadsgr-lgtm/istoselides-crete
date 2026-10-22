@@ -10,9 +10,10 @@ interface ChatMessage {
 
 export async function POST(req: NextRequest) {
   try {
-    const { messages, exchangeCount } = await req.json() as {
+    const { messages, exchangeCount, currentPage } = await req.json() as {
       messages: ChatMessage[];
       exchangeCount: number;
+      currentPage?: string;
     };
 
     const apiKey = process.env.GEMINI_API_KEY;
@@ -20,33 +21,36 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "API key missing" }, { status: 500 });
     }
 
-    const systemPrompt = buildDigiSystemPrompt();
+    let systemPrompt = buildDigiSystemPrompt();
+    if (currentPage) {
+      systemPrompt += `\n\n[ΣΗΜΑΝΤΙΚΗ ΠΛΗΡΟΦΟΡΙΑ]\nΟ χρήστης αυτή τη στιγμή βρίσκεται στη σελίδα με URL/Path: "${currentPage}". Προσάρμοσε την απάντησή σου και το ενδιαφέρον σου με βάση αυτή τη σελίδα. Αν για παράδειγμα βρίσκεται στη σελίδα κατασκευής ιστοσελίδων (/web-design), μίλα στοχευμένα για αυτό.`;
+    }
 
-    // Gemini REQUIRES: (1) conversation starts with "user", (2) strictly alternating user/model
-    // Filter: remove the initial assistant greeting from history before sending to Gemini
-    const filteredMessages = messages.filter((m, idx) => {
-      // Drop the very first message if it's from the assistant (our greeting)
-      if (idx === 0 && m.role === "assistant") return false;
-      return true;
-    });
+    // Normalize messages to ensure they strictly alternate and start with "user"
+    const normalizedContents: { role: string; parts: { text: string }[] }[] = [];
+    
+    for (const m of messages) {
+      if (normalizedContents.length === 0 && m.role !== "user") continue;
+      
+      const role = m.role === "assistant" ? "model" : "user";
+      
+      if (normalizedContents.length > 0 && normalizedContents[normalizedContents.length - 1].role === role) {
+        normalizedContents[normalizedContents.length - 1].parts[0].text += "\n\n" + m.content;
+      } else {
+        normalizedContents.push({ role, parts: [{ text: m.content }] });
+      }
+    }
 
-    // If no user messages yet, nothing to send
-    if (filteredMessages.length === 0) {
+    if (normalizedContents.length === 0) {
       return NextResponse.json({
         message: "Γεια σου! Πώς μπορώ να σε βοηθήσω;",
         captureLeads: false,
       });
     }
 
-    // Map to Gemini format (user/model)
-    const contents = filteredMessages.map((m) => ({
-      role: m.role === "assistant" ? "model" : "user",
-      parts: [{ text: m.content }],
-    }));
-
-    // Call Gemini 2.0 Flash — most cost-effective model
+    // Call Gemini with Streaming Enabled
     const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:streamGenerateContent?alt=sse&key=${apiKey}`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -54,10 +58,10 @@ export async function POST(req: NextRequest) {
           system_instruction: {
             parts: [{ text: systemPrompt }],
           },
-          contents,
+          contents: normalizedContents,
           generationConfig: {
             temperature: 0.85,
-            maxOutputTokens: 400,
+            maxOutputTokens: 1500,
             topP: 0.9,
           },
         }),
@@ -76,14 +80,15 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ message: "Συγγνώμη, κάτι πήγε στραβά. Δοκίμασε ξανά!", captureLeads: false }, { status: 500 });
     }
 
-    const data = await response.json();
-    const message: string =
-      data.candidates?.[0]?.content?.parts?.[0]?.text ?? "Συγγνώμη, κάτι πήγε στραβά. Δοκίμασε ξανά!";
-
-    // Trigger lead capture after 3 exchanges
-    const captureLeads = exchangeCount >= 3;
-
-    return NextResponse.json({ message, captureLeads });
+    // Return the raw SSE stream to the client
+    return new Response(response.body, {
+      status: 200,
+      headers: {
+        "Content-Type": "text/event-stream",
+        "Cache-Control": "no-cache, no-transform",
+        "Connection": "keep-alive",
+      },
+    });
   } catch (error) {
     console.error("Digi chat error:", error);
     return NextResponse.json(
