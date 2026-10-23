@@ -270,7 +270,7 @@ export default function SiteAuditor() {
                   Θέλετε να δείτε <strong className="text-white">100/100</strong> στα αποτελέσματά σας;
                 </p>
                 <a
-                  href="mailto:info@digiads.gr"
+                  href="/contact"
                   className="inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-[#00d9ff] to-blue-500 text-black font-bold rounded-full hover:shadow-[0_10px_40px_rgba(0,217,255,0.3)] hover:scale-105 transition-all duration-500 text-sm tracking-wider uppercase"
                 >
                   Κλείστε Δωρεάν Συνεδρία

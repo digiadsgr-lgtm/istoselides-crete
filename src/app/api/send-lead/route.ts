@@ -10,12 +10,21 @@ interface LeadPayload {
   phone?: string;
   service?: string;
   chatSummary: string;
+  website?: string;
 }
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json() as LeadPayload;
-    const { name, email, phone, service, chatSummary } = body;
+    const { name, email, phone, service, chatSummary, website } = body;
+
+    // Anti-spam Honeypot check: silently drop automated bot submissions
+    if (website && website.trim() !== "") {
+      return NextResponse.json({
+        success: true,
+        message: "Η αίτηση ελήφθη!",
+      });
+    }
 
     if (!name || !email) {
       return NextResponse.json({ error: "Συμπλήρωσε όνομα και email" }, { status: 400 });

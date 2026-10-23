@@ -128,7 +128,14 @@ const structuredData = [
       { "@type": "Country", name: "Ελλάδα" },
     ],
     priceRange: "€€-€€€",
-    email: "info@digiads.gr",
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: "+306987602707",
+      url: "https://istoselides-crete.gr/contact",
+      contactType: "customer service",
+      areaServed: "GR",
+      availableLanguage: ["Greek", "English"],
+    },
     openingHoursSpecification: {
       "@type": "OpeningHoursSpecification",
       dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],

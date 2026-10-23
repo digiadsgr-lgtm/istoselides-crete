@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import ProtectedEmail from "@/components/ProtectedEmail";
 
 export function Footer() {
   return (
@@ -44,22 +45,15 @@ export function Footer() {
             </p>
 
             <div className="space-y-2 text-xs text-slate-400 font-mono mb-6">
-              <div>📍 Κολοκοτρώνη 34, Ρέθυμνο 74132, Κρήτη</div>
+              <div>📍 Κολοκοτρώνη 34, Ρέθυμνο, Κρήτη</div>
               <div>
                 📞{" "}
-                <a href="tel:+306987602707" className="hover:text-[#00d9ff]">
-                  +30 698 760 2707
-                </a>{" "}
-                ·{" "}
-                <a href="tel:+302831131647" className="hover:text-[#00d9ff]">
-                  +30 28311 31647
+                <a href="tel:+306987602707" className="hover:text-[#00d9ff] transition-colors">
+                  698 760 2707
                 </a>
               </div>
               <div>
-                ✉️{" "}
-                <a href="mailto:info@digiads.gr" className="hover:text-[#00d9ff]">
-                  info@digiads.gr
-                </a>
+                <ProtectedEmail prefix="✉️ " className="hover:text-[#00d9ff] transition-colors" showCopy />
               </div>
             </div>
 
